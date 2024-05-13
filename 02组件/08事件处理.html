@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- 用于解析es6语法 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 有状态组件
+        class Hello extends React.Component {
+            // 最常用的写法
+            state = {
+                name: "李四",
+                age: 25,
+                sex: "女",
+                flag: true
+            }
+            // 箭头函数是工作中常用的
+            // 增加年龄
+            addAge = () => {
+                console.log(this);
+                // 修改state中的数据
+                // 修改state中的数据
+                this.setState({
+                    age: this.state.age + 1
+                })
+            }
+            // 减少年龄
+            reduceAge = () => {
+                // 修改state中的数据
+                this.setState({
+                    age: this.state.age - 1
+                })
+            }
+            // 更改状态
+            updateFlag = () => {
+                // 修改state中的数据
+                this.setState({
+                    flag: !this.state.flag
+                })
+            }
+            // 阻止默认事件
+            handleClick = (event) => {
+                event.preventDefault()
+                console.log("阻止默认事件");
+            }
+            render() {
+                return <div>
+                    <h1>Hello World</h1>
+                    <h1>Hello, React!</h1>
+                    <p>姓名:{this.state.name}</p>
+                    <p>年龄:{this.state.age}</p>
+                    <p>性别:{this.state.sex}</p>
+                    <p>职业:{this.state.flag ? '前端工程师' : '后端工程师'}</p>
+                    <p>爱好:编程</p>
+                    <p>梦想:成为大牛</p>
+                    <p>座右铭:不要停止努力</p>
+                    <a href="#" onClick={this.handleClick}>click</a>
+                    <button onClick={this.addAge}>+1</button>
+                    <button onClick={this.reduceAge}>-1</button>
+                    <button onClick={this.updateFlag}>flag</button>
+                </div>;
+            }
+
+        }
+        ReactDOM.render(<Hello />, document.getElementById('root'))
+    </script>
+</body>
+
+</html>

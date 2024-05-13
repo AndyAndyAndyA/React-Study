@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class Hello extends React.Component {
+        state = {
+          name: 'Andy',
+          sex: '2',
+          select: 'E',
+          select1: '2',
+          text: '士大夫士大夫士大夫士大夫士大夫',
+        }
+        handleSubmit = e => {
+          console.log(this.state)
+          e.preventDefault()
+        }
+        // handleChange = (e) => {
+        //     this.setState({
+        //         name: e.target.value
+        //     })
+        // }
+        // handleRdio = (e) => {
+        //     this.setState({
+        //         sex: e.target.value
+        //     })
+        // }
+        // handleSelect = (e) => {
+        //     this.setState({
+        //         select: e.target.value
+        //     })
+        // }
+        // handleSelect1 = (e) => {
+        //     this.setState({
+        //         select1: e.target.value
+        //     })
+        // }
+        // handleText = (e) => {
+        //     this.setState({
+        //         text: e.target.value
+        //     })
+        // }
+        handleChange = e => {
+          this.setState({
+            [e.target.name]: e.target.value,
+          })
+        }
+        render() {
+          const { name, sex, select, text, select1 } = this.state
+          let arr1 = ['A', 'B', 'C', 'D', 'E', 'F']
+          let arr2 = [
+            { id: '1', name: 'A', age: '20' },
+            { id: '2', name: 'B', age: '21' },
+            { id: '3', name: 'C', age: '22' },
+          ]
+          return (
+            <div>
+              <form>
+                <label>
+                  姓名
+                  <input type="text" name="name" defaultValue={name} onChange={this.handleChange} />
+                </label>
+                <label>
+                  性别
+                  <input
+                    type="radio"
+                    name="sex"
+                    value="1"
+                    defaultChecked={sex === '1' ? true : false}
+                    onChange={this.handleChange}
+                  />
+                  男
+                  <input
+                    type="radio"
+                    name="sex"
+                    value="1"
+                    defaultChecked={sex === '2' ? true : false}
+                    onChange={this.handleChange}
+                  />
+                  女
+                </label>
+                <label>
+                  循环数组
+                  <select name="select" defaultValue={select} onChange={this.handleChange}>
+                    {arr1.map((item, index) => {
+                      return (
+                        <option key={index} value={item}>
+                          {item}
+                        </option>
+                      )
+                    })}
+                  </select>
+                </label>
+                <label>
+                  循环对象
+                  <select name="select1" defaultValue={select1} onChange={this.handleChange}>
+                    {arr2.map(item => {
+                      // {传的值}>{显示的值}
+                      return (
+                        <option key={item.id} value={item.id}>
+                          {item.age}
+                        </option>
+                      )
+                    })}
+                  </select>
+                </label>
+                <label>
+                  备注
+                  <textarea name="text" defaultValue={text} onChange={this.handleChange}></textarea>
+                </label>
+                <button onClick={this.handleSubmit}>提交</button>
+              </form>
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(<Hello />, document.getElementById('root'))
+    </script>
+  </body>
+</html>

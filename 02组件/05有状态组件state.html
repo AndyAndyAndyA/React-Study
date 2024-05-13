@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- 用于解析es6语法 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 有状态组件
+        class Hello extends React.Component {
+            // 如果需要在constructor中使用props
+            constructor(props) {
+                // 子类一定要调用super(),从而得到父类的this对象,否则会报错
+                super(props);
+                // 初始化状态
+                this.state = {
+                    name: '李四',
+                    age: 28,
+                    sex: '女'
+                }
+                // super()加不加props的区别
+                // 如果需要在构造函数中使用props或者this.props那么需要添加,否则需要添加
+                console.log(this.props);
+
+            }
+            // render是生命周期里面非常基础和底层的方法,一定要用它来进行渲染
+            render() {
+                return <div>
+                    <h1>Hello World</h1>
+                    <h1>Hello, React!</h1>
+                    <p>传进来的姓名:{this.props.name}</p>
+                    <p>传进来的年龄:{this.props.age}</p>
+                    <p>传进来的性别:{this.props.sex}</p>
+                    <p>姓名:{this.state.name}</p>
+                    <p>年龄:{this.state.age}</p>
+                    <p>性别:{this.state.sex}</p>
+                    <p>职业:前端工程师</p>
+                    <p>爱好:编程</p>
+                    <p>梦想:成为大牛</p>
+                    <p>座右铭:不要停止努力</p>
+                </div>;
+            }
+
+        }
+        ReactDOM.render(<Hello name="张三" age="20" sex="男" />, document.getElementById('root'))
+    </script>
+</body>
+
+</html>

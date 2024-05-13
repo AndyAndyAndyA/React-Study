@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- 用于解析es6语法 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 定义一个无状态组件
+        function MyComponent(props) {
+            return <div>
+                <h1>Hello, React!</h1>
+                <p>姓名:{props.name}</p>
+                <p>年龄:{props.age}</p>
+                <p>性别:{props.sex}</p>
+                <p>职业:前端工程师</p>
+                <p>爱好:编程</p>
+                <p>梦想:成为大牛</p>
+                <p>座右铭:不要停止努力</p>
+            </div>;
+        }
+        ReactDOM.render(<MyComponent name='Andy' sex='女' age='25' />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>

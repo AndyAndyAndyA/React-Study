@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 受限组件 -->
+    <div id="root"></div>
+    <script type="text/babel">
+        class Hello extends React.Component {
+            state = {
+                value: "hello world"
+            }
+            // 双向数据绑定
+            // 1. 给input绑定onChange事件
+            // 2. 事件触发时，修改state中的值
+            // 3. 修改state中的值，会自动更新页面
+            handleChange = (e) => {
+                this.setState({
+                    // e.target.value 获取input的值
+                    // 修改state中的值
+                    // 修改state中的值，会自动更新页面
+                    value: e.target.value
+                })
+
+            }
+            render() {
+                return <div>
+                    <input type="text" defaultValue={this.state.value} onChange={this.handleChange} />
+                    <p>{this.state.value}</p>
+                </div>;
+            }
+        }
+        ReactDOM.render(
+            <Hello />,
+            document.getElementById("root")
+        )
+
+    </script>
+
+    <!-- 非受限组件 -->
+    <div id="root1"></div>
+    <script type="text/babel">
+        class Rts extends React.Component {
+
+            render() {
+                return <div>
+                    <label >空值:
+                        <input type="radio" name='eat' />吃
+                        <input type="radio" name='eat' />喝
+                    </label>
+                    <hr />
+                    <label >默认值:
+                        <input type="radio" name='sex' defaultChecked />男
+                        <input type="radio" name='sex' />女
+                    </label>
+                    <hr />
+                    <label >空值:
+                        <input type="checkbox" />苹果
+                        <input type="checkbox" />香蕉
+                        <input type="checkbox" />橘子
+                        <input type="checkbox" />葡萄
+                    </label>
+                    <hr />
+                    <label >默认值:
+                        <input type="checkbox" defaultChecked />苹果
+                        <input type="checkbox" />香蕉
+                        <input type="checkbox" />橘子
+                        <input type="checkbox" />葡萄
+                    </label>
+                    <hr />
+                    <label >空值:
+                        <select>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                    </label>
+                    <hr />
+                    <label >默认值:
+                        <select defaultValue="C">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                    </label>
+                    <hr />
+                    <label >多个默认值,传入数组:
+                        <select multiple={true} defaultValue={["E", "B"]}>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
+                    </label>
+                </div>;
+            }
+        }
+        ReactDOM.render(
+            <Rts />,
+            document.getElementById("root1")
+        )
+
+    </script>
+</body>
+
+</html>

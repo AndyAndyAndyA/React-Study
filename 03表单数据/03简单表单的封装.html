@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Hello extends React.Component {
+            state = {
+                name: "",
+                password: "",
+                address: ""
+            }
+            handleSubmit = (e) => {
+                console.log(this.state)
+                e.preventDefault()
+            }
+            handleChange = (e) => {
+                this.setState({
+                    [e.target.name]: e.target.value
+                })
+            }
+
+            render() {
+                const { name, password, address } = this.state
+                return <div>
+                    <form >
+                        <label>姓名
+                            <input type="text" name="name" defaultValue={name} onChange={this.handleChange} />
+                        </label>
+                        <br />
+                        <label>密码
+                            <input type="password" name="password" defaultValue={password} onChange={this.handleChange} />
+                        </label>
+                        <br />
+                        <label>地址
+                            <input type="text" name="address" defaultValue={address} onChange={this.handleChange} />
+                        </label>
+                        <br />
+                        <button onClick={this.handleSubmit}>提交</button>
+                    </form>
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <Hello />,
+            document.getElementById("root")
+        )
+
+    </script>
+</body>
+
+</html>

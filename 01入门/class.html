@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- 用于解析es6语法 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <script>
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        Person.prototype.sayHello = function () {
+            console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+        }
+
+        const person = new Person('John', 25);
+        person.sayHello();
+
+        // 用es6语法改写
+        class Persons {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+                this.sayHello = this.sayHello.bind(this);
+            }
+
+            sayHello() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+            }
+        }
+
+        const person1 = new Persons('Andy', 48);
+        person1.sayHello();
+
+        // 判断属性是存在于实例中还是原型中，hasOwnProperty()指示对象自身属性中是否具有指定的属性
+        console.log(person1.hasOwnProperty('name')); // true
+        console.log(person1.hasOwnProperty('sayHello')); // true
+        console.log(person1.__proto__.hasOwnProperty('sayHello')); // true
+
+
+    </script>
+</body>
+
+</html>
